@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Recognition</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hand Gesture Recognition</h1>
+            <p>Show hand gestures to your webcam and see them recognized in real-time</p>
+        </header>
+
+        <div class="main-content">
+            <div class="camera-section">
+                <div class="video-container">
+                    <video id="video" playsinline autoplay></video>
+                    <canvas id="output"></canvas>
+                </div>
+                <div class="controls">
+                    <button id="startBtn">Start Detection</button>
+                    <button id="stopBtn" disabled>Stop Detection</button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Detection Results</h2>
+                <div id="results">
+                    <p class="placeholder">Start detection to see results</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>About This Project</h2>
+            <p>This web application uses TensorFlow.js and MediaPipe to detect hand gestures in real-time through your webcam.</p>
+            <p>The system identifies 21 hand landmarks and can recognize various gestures.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
