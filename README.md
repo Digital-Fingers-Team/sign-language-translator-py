@@ -1,21 +1,35 @@
 # Hand Gesture Recognition Web App
 
-A browser-based hand gesture recognition system using TensorFlow.js and MediaPipe.
+A complete browser-based hand gesture recognition system using TensorFlow.js and MediaPipe.
 
 ## Features
 
-- Real-time hand detection using webcam
-- Visualization of hand landmarks
-- Simple and intuitive interface
-- Responsive design that works on desktop and mobile devices
+- **Data Collection**: Capture hand gesture samples through your webcam
+- **Model Training**: Train a neural network model directly in the browser
+- **Real-time Recognition**: Test your trained model with live webcam feed
+- **No Server Required**: Everything runs locally in your browser
 
 ## How to Use
 
-1. Open `index.html` in a web browser (Chrome recommended)
+1. Open `index.html` in a modern web browser (Chrome recommended)
 2. Allow camera access when prompted
-3. Click "Start Detection" to begin hand tracking
-4. Show your hand to the camera to see the detection results
-5. Click "Stop Detection" to end the tracking
+3. Use the tabs to navigate between different functionalities:
+
+### Collect Data Tab
+- Enter a gesture name (e.g., "thumbs_up")
+- Set the number of samples to collect
+- Click "Start Collection" and perform the gesture in front of your camera
+- Click "Save Data" when done
+
+### Train Model Tab
+- Click "Train Model" to train a neural network on your collected data
+- Monitor training progress in real-time
+- Save or download the trained model when training completes
+
+### Test Live Tab
+- Load a trained model (if not already loaded)
+- Click "Start Detection" to begin real-time gesture recognition
+- Perform gestures in front of your camera to see them recognized
 
 ## Technical Details
 
@@ -23,6 +37,8 @@ This application uses:
 - [TensorFlow.js](https://www.tensorflow.org/js) for machine learning in the browser
 - [MediaPipe Hands](https://google.github.io/mediapipe/solutions/hands) for hand landmark detection
 - Vanilla JavaScript for application logic
+- Browser's localStorage for data persistence
+- IndexedDB for model storage
 
 ## Hosting on GitHub Pages
 
@@ -32,15 +48,25 @@ This application uses:
 4. Select the main branch as the source
 5. Your site will be published at `https://[username].github.io/[repository-name]`
 
+## Browser Compatibility
+
+This application works best in:
+- Chrome (recommended)
+- Firefox
+- Edge
+
+Safari may have limited compatibility due to its stricter privacy policies.
+
 ## Limitations
 
-- This is a demonstration version showing hand detection but not gesture classification
-- For full gesture recognition, you would need to train a model on specific gesture data
-- Performance may vary based on device capabilities and camera quality
+- Model training happens in the browser, which may be slow for large datasets
+- The neural network is relatively simple for browser compatibility
+- Accuracy depends on the quality and quantity of training data
 
 ## Future Enhancements
 
-- Add gesture classification with a trained model
-- Implement data collection for custom gestures
-- Add training interface in the browser
-- Support for multiple gesture recognition
+- Add more model architecture options
+- Implement data augmentation techniques
+- Add support for exporting/importing datasets
+- Add gesture sequence recognition
+- Improve UI with gesture visualization during data collection

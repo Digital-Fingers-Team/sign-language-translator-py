@@ -16,36 +16,112 @@
     <div class="container">
         <header>
             <h1>Hand Gesture Recognition</h1>
-            <p>Show hand gestures to your webcam and see them recognized in real-time</p>
+            <p>Collect data, train a model, and recognize hand gestures in real-time</p>
         </header>
 
-        <div class="main-content">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="collect">Collect Data</button>
+            <button class="tab-button" data-tab="train">Train Model</button>
+            <button class="tab-button" data-tab="test">Test Live</button>
+        </div>
+
+        <div class="tab-content active" id="collect-tab">
+            <div class="form-group">
+                <label for="gestureLabel">Gesture Label:</label>
+                <input type="text" id="gestureLabel" placeholder="Enter gesture name (e.g., thumbs_up)">
+            </div>
+            
+            <div class="form-group">
+                <label for="sampleCount">Samples to Collect:</label>
+                <input type="number" id="sampleCount" value="20" min="5" max="100">
+            </div>
+            
             <div class="camera-section">
                 <div class="video-container">
                     <video id="video" playsinline autoplay></video>
                     <canvas id="output"></canvas>
                 </div>
+                
                 <div class="controls">
-                    <button id="startBtn">Start Detection</button>
-                    <button id="stopBtn" disabled>Stop Detection</button>
+                    <button id="startCollectBtn">Start Collection</button>
+                    <button id="stopCollectBtn" disabled>Stop Collection</button>
+                    <button id="saveDataBtn" disabled>Save Data</button>
+                </div>
+                
+                <div class="progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span id="progressText">0/0 samples collected</span>
                 </div>
             </div>
+            
+            <div class="data-info">
+                <h3>Collected Data</h3>
+                <div id="dataSummary">
+                    <p>No data collected yet</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="tab-content" id="train-tab">
+            <div class="training-controls">
+                <button id="trainModelBtn">Train Model</button>
+                <button id="loadModelBtn" disabled>Load Model</button>
+                <button id="downloadModelBtn" disabled>Download Model</button>
+            </div>
+            
+            <div class="training-progress">
+                <h3>Training Progress</h3>
+                <div id="trainingStatus">Not started</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="trainingProgressFill"></div>
+                </div>
+            </div>
+            
+            <div class="model-info">
+                <h3>Model Information</h3>
+                <div id="modelSummary">
+                    <p>No model trained yet</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="test-tab">
+            <div class="camera-section">
+                <div class="video-container">
+                    <video id="testVideo" playsinline autoplay></video>
+                    <canvas id="testOutput"></canvas>
+                </div>
+                
+                <div class="controls">
+                    <button id="startTestBtn">Start Detection</button>
+                    <button id="stopTestBtn" disabled>Stop Detection</button>
+                </div>
+            </div>
+            
             <div class="results-section">
                 <h2>Detection Results</h2>
                 <div id="results">
                     <p class="placeholder">Start detection to see results</p>
+                </div>
+                
+                <div class="confidence-bars">
+                    <h3>Confidence Levels</h3>
+                    <div id="confidenceContainer"></div>
                 </div>
             </div>
         </div>
 
         <div class="info-section">
             <h2>About This Project</h2>
-            <p>This web application uses TensorFlow.js and MediaPipe to detect hand gestures in real-time through your webcam.</p>
-            <p>The system identifies 21 hand landmarks and can recognize various gestures.</p>
+            <p>This web application uses TensorFlow.js and MediaPipe to detect and recognize hand gestures in real-time through your webcam.</p>
+            <p>You can collect training data, train a model, and test it all in the browser without any server requirements.</p>
         </div>
     </div>
 
+    <script src="data-manager.js"></script>
+    <script src="model-trainer.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
